@@ -1,0 +1,36 @@
+.carousel{width:550px;
+       height:400px;}
+      
+
+.well{
+font-family: 'Merriweather', serif;        
+}
+#bold{
+  font-weight: bold;
+}
+#paragraphStyle{
+  font-family: 'Merriweather', serif;
+}
+#headerFont{
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.2em;
+}
+
+.btn{
+      font-family: 'Merriweather', serif;  
+}
+h1{
+    color: red;
+    text-align: center;
+     font-family: 'Josefin Slab', serif;
+     font-size: 4em;
+}
+footer{
+    position: absolute;
+    text-align: center;
+    bottom: 5%;
+    width: 100%;
+    height: 3%;
+    background: white;
+    color: red;
+}

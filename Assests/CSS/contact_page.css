@@ -1,0 +1,48 @@
+
+a:hover{
+color: #ff0000 !important;
+    
+}
+#headerFont{
+    font-family: 'Josefin Slab', serif;
+    font-size: 1.2em;
+}
+
+body{
+    overflow-y:scroll;
+}
+
+h1{
+    color: red;
+    text-align: center;
+     font-family: 'Josefin Slab', serif;
+     font-size: 4em;
+}
+
+.other-color{
+    color:red;
+    text-align: center;
+   font-family: 'Josefin Slab', serif;
+   font-weight: 200;
+}
+
+.black {
+    color:black;
+    
+}
+
+form{
+    text-align: center;
+    color:red;
+    font-family: 'Merriweather', serif;
+    font-size: 1.5em;
+}
+footer{
+    position: relative;
+    text-align: center;
+    bottom: 5%;
+    width: 100%;
+    height: 3%;
+    background: white;
+    color: red;
+}
