@@ -73,11 +73,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
+   <!--                  <img class="img-responsive" src="img/profile.png" alt=""> -->
                     <div class="intro-text">
                         <span class="name">Megan Davis</span>
                         <hr class="star-light">
-                        <span class="skills">Computer Science Graduate - Programmer - Game Designer</span>
+                        <span class="skills">Computer Science - Programmer</span>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/circus.png" class="img-responsive" alt="">
+                        <img src="img/portfolio/3d_visualization.jpg" class="img-responsive" alt="">
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
@@ -131,11 +131,11 @@
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="img/portfolio/game.png" class="img-responsive" alt="">
+                        <img src="img/portfolio/LOC.png" class="img-responsive" alt="">
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+<!--                     <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -143,16 +143,16 @@
                         </div>
                         <img src="img/portfolio/safe.png" class="img-responsive" alt="">
                     </a>
-                </div>
+                </div> -->
                 <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                   <!--  <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
                         <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -294,65 +294,73 @@
                             <hr class="star-primary">
                             <img src="img/portfolio/transverse2.jpg" class="img-responsive img-centered" alt="">
                             <p>Transverse is a 2D game designed to challenge the player’s hand-eye coordination as well as their memory. The player must get from Point A to Point B by navigating the player’s avatar (by raising or lowering their hand) through a series of treacherous pathways. Whenever the player’s avatar manages to come into contact with the hazardous landscape, the game resets and the player must start over.</p><br>
-                            <h2> Code </h2>
+                            <h2> Code </h2>                           
+                            <ul class="list-inline item-details">
                             <script type="syntaxhighlighter" class="brush: csharp"><![CDATA[
                             //Creates an auto-advancing background “on-rails” type system
                             public class BackDropScroll : MonoBehaviour {
 
-                              private Vector3 reset;
-                              
-                              void Start () {
-                                //Sets the exact reset location
-                                reset = Vector3.right * 4 * 10.24f * 15.0f;
-                                //Debug.Log ("Reset Location:" + reset);
-                              }
-
-                              //Moves the background/foreground along continuously  
-                              void Update () {  
-                                Vector3 Trans = Vector3.left * Time.deltaTime * (5.5f);
-                                transform.Translate (Trans);
-                                //If we reach the end of the background/foreground and the game hasn’t stopped institute a reset
-                                if (transform.position.x < -1200)
-                                {
-                                  transform.Translate (reset);
+                                private Vector3 reset;
+                                    
+                                void Start () {
+                                    //Sets the exact reset location
+                                    reset = Vector3.right * 4 * 10.24f * 15.0f;
+                                    //Debug.Log ("Reset Location:" + reset);
                                 }
-                              }
+                                void Update () {
+                                    //Moves the background/foreground along continuously 
+                                    Vector3 Trans = Vector3.left * Time.deltaTime * (5.5f);
+                                    transform.Translate (Trans);
+                                    //If for some reason we reach the end of the background/foreground and the game hasn’t stopped institute a reset
+                                    if (transform.position.x < -1200)
+                                    {
+                                        transform.Translate (reset);
+                                    }
+                                }
                             }
-                            //Moves Character along the screen
-                            public class CharacterMove2D : MonoBehaviour {
-                              //Kinect information pulled from a unity plugin
-                              private Vector3 kinectHandPosition;
-                              private Vector3 mousePosition;
-                              private InteractionManager manager;
-                              private float moveSpeed = 10.5f;
 
-                              // Update is called once per frame
-                              void Update () {   
-                                manager = InteractionManager.Instance;  
-                                //The player can only move on the Y plane, therefore using the location of the hand we extrapolate where to translate the player-controlled object
+                            public class MouseMove2D : MonoBehaviour {
+                                //Kinect information pulled from a unity plugin
+                                private Vector3 kinectHandPosition;
+                                private Vector3 mousePosition;
+                                private InteractionManager manager;
+                                private float moveSpeed = 10.5f;
+
+                                // Use this for initialization
+                                void Start () {
+                                    
+                                }
+                                
+                                // Update is called once per frame
+                                void Update () {
+                                    
+                                manager = InteractionManager.Instance;
+                                    
+                                
+                                //The player can only move on the Y plane, therefore using the location
+                                //of the hand we extrapolate where to translate the player-controlled object
                                 if(manager.cursorScreenPos.y < 0.5f)
                                 {
-                                    kinectHandPosition.y = (manager.cursorScreenPos.y) * 10.0f;   
+                                    kinectHandPosition.y = (manager.cursorScreenPos.y) * 10.0f;           
                                 }
                                 else if(manager.cursorScreenPos.y > 0.5f)
-                                {
-                                  kinectHandPosition.y = (manager.cursorScreenPos.y) * 10.0f;
+                                {        
+                                    kinectHandPosition.y = (manager.cursorScreenPos.y) * 10.0f;
                                 }
+                                
+                                //Debug.Log(kinectHandPosition);
                                 transform.position = Vector2.Lerp(transform.position, kinectHandPosition, moveSpeed);
-
-                                //Secondary movement system used to test the reset mechanic without having to stand up and use the kinect
-                                /*
+                                //Debug.Log (transform);                                
                                 if(Input.GetMouseButton(1))
                                 {
-                                  mousePosition = Input.mousePosition;
-                                  mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-                                  transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-                                }*/
-                              }
+                                    mousePosition = Input.mousePosition;
+                                    mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                                    //Debug.Log(mousePosition);
+                                    transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+                                }
+                                
                             }
-                            ]]></script>
-                            
-                            <ul class="list-inline item-details">
+                             ]]></script>
                                 <li>Role:
                                     <strong><a href="">Programmer, Game Designer, Project Manager</a>
                                     </strong>
@@ -361,10 +369,6 @@
                                     <strong><a href="">Unity 2D, C#, Microsoft Kinect</a>
                                     </strong>
                                 </li>
-                             <!--    <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li> -->
                             </ul>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
@@ -389,6 +393,138 @@
                             <hr class="star-primary">
                             <img src="img/portfolio/nice_job1.jpg" class="img-responsive img-centered" alt="">
                             <p>Made in 48 hours at the 2015 Global Game Jam, as a maintenence worker, you must solve puzzles in order to fix an unknown problem aboard a spacecraft. Try to do a nice job, or there may be consequences.</p>
+                            <h2> Code </h2>
+                            <script type="syntaxhighlighter" class="brush: csharp"><![CDATA[
+                            public class cornerTileFlip : MonoBehaviour {
+                                //Corner Script for 4x4 Mini Game in the bottom corner
+                                
+                                //The location of the tile on [4,4]
+                                public int x;
+                                public int y;
+                               
+                                public GameObject tiles;
+
+                                //All the tiles neary by that it will effect
+                                public GameObject tileX;
+                                public GameObject tileY;
+ 
+                                //Needed to check if the tiles should be allowed to be pressed
+                                public GameObject GreenLight;
+
+                                //the two sprites to be changed between
+                                public Sprite tileNotActive;
+                                public Sprite tileActive;
+
+                                //Audio for when button is pressed
+                                public AudioClip buttonPress;
+                                
+                                private SpriteRenderer spriteRenderer;
+                                void Start () {
+                                    
+                                }
+                                
+                                void OnMouseDown()
+                                {
+                                    //reference the greenlight up script to determine if the puzzle has been completed
+                                    greenLightUP theGreenLight = GreenLight.GetComponent<greenLightUP>();
+                                    if(theGreenLight.complete)
+                                    {
+                                        //disable the current script so it cannot be pressed    
+                                        this.GetComponent<cornerTileFlip>().enabled = false;
+                                    }
+                                    else
+                                    {
+                                        //audio played only once
+                                        audio.PlayOneShot(buttonPress);
+
+                                        //Used to call theTiles Script which incluse a 4x4 2D array that stores bool values on if the tile is 'active' or not
+                                        theTilesScript theTilesValue = tiles.GetComponent<theTilesScript>();
+                                
+                                        theTilesValue.theBooleanArray[x,y] = !theTilesValue.theBooleanArray[x,y];
+                                        if(theTilesValue.theBooleanArray[x,y])
+                                        {
+                                            spriteRenderer = GetComponent<SpriteRenderer>();
+                                            spriteRenderer.sprite = tileActive;
+                                        }
+                                        else
+                                        {
+                                            spriteRenderer = GetComponent<SpriteRenderer>();
+                                            spriteRenderer.sprite = tileNotActive;
+                                        }
+                                
+                                        //If X is equal to three than we know that the x position of tiles being flipped will be -1 instead of +1
+                                        if(x != 3)
+                                        {
+                                            
+                                            theTilesValue.theBooleanArray[x+1,y] = !theTilesValue.theBooleanArray[x+1,y];
+                                            if(theTilesValue.theBooleanArray[x+1,y])
+                                            {
+                                                spriteRenderer = tileX.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileActive;
+                                            }
+                                            else
+                                            {
+                                                spriteRenderer = tileX.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileNotActive;
+                                            }
+                                        }
+                                        else 
+                                        {
+                                        
+                                            theTilesValue.theBooleanArray[x-1,y] = !theTilesValue.theBooleanArray[x-1,y];
+                                            if(theTilesValue.theBooleanArray[x-1,y])
+                                            {
+                                                spriteRenderer = tileX.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileActive;
+                                            }
+                                            else
+                                            {
+                                                spriteRenderer = tileX.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileNotActive;
+                                            }
+                                        }
+                                        //If X is equal to three than we know that the x position of tiles being flipped will be -1 instead of +1
+                                        if(y != 3)
+                                        {
+                                            theTilesValue.theBooleanArray[x, y+1] = !theTilesValue.theBooleanArray[x, y+1];
+                                            if(theTilesValue.theBooleanArray[x,y+1])
+                                            {
+                                                spriteRenderer = tileY.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileActive;
+                                            }
+                                            else
+                                            {
+                                                spriteRenderer = tileY.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileNotActive;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            
+                                            theTilesValue.theBooleanArray[x, y-1] = !theTilesValue.theBooleanArray[x, y-1];
+                                            if(theTilesValue.theBooleanArray[x,y-1])
+                                            {
+                                                spriteRenderer = tileY.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileActive;
+                                            }
+                                            else
+                                            {
+                                                spriteRenderer = tileY.GetComponent<SpriteRenderer>();
+                                                spriteRenderer.sprite = tileNotActive;
+                                            }
+                                        }
+                                    }
+                                    for(int a = 0; a < 4; a++)
+                                    {
+                                        for(int b = 0; b < 4; b++)
+                                        {
+                                            theTilesScript theTilesValue = tiles.GetComponent<theTilesScript>();
+                                            Debug.Log (theTilesValue.theBooleanArray[a,b]);
+                                        }
+                                    }
+                                }
+                            }
+                            ]]></script>
                             <ul class="list-inline item-details">
                                 <li>Role:
                                     <strong><a href="">Programmer, Game Designer</a>
@@ -398,10 +534,6 @@
                                     <strong><a href="">Unity 2D, C#</a>
                                     </strong>
                                 </li>
-                                <!-- <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li> -->
                             </ul>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
@@ -422,21 +554,129 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>3D Visualization</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/circus.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                            <img src="img/portfolio/3d_vis1.jpg" class="img-responsive img-centered" alt="">
+                            <p>Designed and developed a 3D simulation that immerses the user in an interactive environment. Within the environment the user can move and explore the virtual world, pick up objects, and throw objects. In addition, each object has its own weight that can be felt when interacted with.</p>
+                            <h2> Code </h2>
+                            <script type="syntaxhighlighter" class="brush: csharp"><![CDATA[
+                            public class pickupObject_Camera_Mouse : MonoBehaviour
+                            {
+
+                                /*
+                                The purpose of this script is to provide an initial template for pickuping objects when the middle falcon button is clicked, and then have it move
+                                around the screen. This script may be attached to any object, however the pickUpAble script must be attached
+                                to the object you wish to move.
+                                */
+
+                                public Vector3 lastObjectPosition = new Vector3(0, 0, 0);
+                                public Vector3 changeObjectPosition = new Vector3(0, 0, 0);
+                                public Vector3 test = new Vector3(2, 2, 2);
+                                public GameObject throwO;
+                                public Rigidbody rb;
+                                public float thrust;
+
+                                public Camera mainCamera; 
+
+                                //public GameObject theCursor; //This can be whatever object you wish to cast the ray from
+                                GameObject carriedObject;
+                                GameObject theHaptic;
+                                SphereManipulator sphereScript;
+                                bool carryingObject;
+
+                                /*
+                                    Ray Length - how far the ray should extend from the GameObject to check for a hit
+                                    Distance - how far you wish the object to 'float' from the GameObject
+                                    Smooth - This is used to prevent very jerky movement when moving the GameObject around
+                                */
+                                public float rayLength;
+                                public float distance;
+                                public float smooth;
+
+                                // Use this for initialization
+                                void Start()
+                                {
+                                    rb = throwO.GetComponent<Rigidbody>();
+                                    //theHaptic = GameObject.Find("Falcon");
+                                    //sphereScript = theHaptic.GetComponent<SphereManipulator>();
+                                }
+
+                                // Update is called once per frame
+                                void Update()
+                                {
+                             
+                                    if (carryingObject)
+                                    {
+                                        carry(carriedObject);
+                                        checkDrop();
+                                    }
+                                    else
+                                    {
+                                        pickup();
+                                    }
+                                }
+
+                                void carry(GameObject o)
+                                {
+                                    o.transform.position = Vector3.Lerp(o.transform.position,mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+                                }
+
+                                void pickup()
+                                {
+                                    if(Input.GetMouseButton(0))
+                                    {
+                                        lastObjectPosition = throwO.transform.position;
+                                        int x = Screen.width / 2;
+                                        int y = Screen.height / 2;
+                                        Ray ray = mainCamera.ScreenPointToRay(new Vector3(x, y));
+                                        RaycastHit hit;
+                                        if(Physics.Raycast(ray, out hit))
+                                        {
+                                            pickupAble p = hit.collider.GetComponent<pickupAble>();
+                                            if (p != null)
+                                            {
+                                                Rigidbody rd = p.GetComponent<Rigidbody>();
+                                                rd.isKinematic = true;
+                                                carryingObject = true;
+                                                carriedObject = p.gameObject;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                void checkDrop()
+                                {
+                                    if(Input.GetMouseButtonUp(0))
+                                    {
+                                        Rigidbody rd = carriedObject.GetComponent<Rigidbody>();
+                                        rd.isKinematic = false;
+                                        carryingObject = false;
+                                        carriedObject = null;
+                                        changeObjectPosition = throwO.transform.position - lastObjectPosition;
+                                            //Debug.Log("Change in X: " + changePosition.x);
+                                            //Debug.Log("Change in Y: " + changePosition.y);
+
+                                            rb.AddForce(changeObjectPosition * thrust);
+                                    }
+                                }
+
+                                void dropObject(GameObject o)
+                                {
+                                    Rigidbody rd = o.GetComponent<Rigidbody>();
+                                    rd.isKinematic = false;
+                                    carryingObject = false;
+                                    carriedObject = null;
+
+                                }
+                            }
+                            ]]></script>
                             <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                <li>Role:
+                                    <strong><a href="">Project Manager, Programmer</a>
                                     </strong>
                                 </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                <li>Utilized:
+                                    <strong><a href="">Unity 3D, C#, Oculus Rift, Novint Falcon</a>
                                     </strong>
                                 </li>
                             </ul>
@@ -459,24 +699,22 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>Library of Codexes</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                            <img src="img/portfolio/LOC1.jpg" class="img-responsive img-centered" alt="">
+                            <p>The Library of Codexes is a dynamic website designed to provide easy access to videogame text(codexes). Utilizing popular web technologies and a MYSQL database LOC serves codexes, authors, collections, and even ebooks.</p>
+                       <ul class="list-inline item-details">
+                                <li>Role:
+                                    <strong><a href="">Everything</a>
                                     </strong>
                                 </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
+                                <li>Utilized:
+                                    <strong><a href="">HTML5, CSS3, Javascript, PHP, Ajax, MYSQL</a>
                                     </strong>
                                 </li>
                             </ul>
+                            <h2> Code </h2>
+                            <p> No code, but the website can be found <a href = "www.libraryofcodexes.com">here</a>.</p> 
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
@@ -521,7 +759,7 @@
             </div>
         </div>
     </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -558,7 +796,7 @@
             </div>
         </div>
     </div>
-
+ -->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
